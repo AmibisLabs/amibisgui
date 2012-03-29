@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.0//EN" "http://www.netbeans.org/dtds/filesystem-1_0.dtd">
+<filesystem>
+    <folder name="Actions">
+        <folder name="Omiscid">
+            <file name="fr-prima-omiscidgui-connectormanager-SimpleConnectorManagerAction.instance"/>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Modes">
+            <folder name="editor">
+                <file name="SimpleConnectorManagerTopComponent.wstcref" url="SimpleConnectorManagerTopComponentWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Omiscid">
+        <folder name="Actions">
+            <file name="fr-prima-omiscidgui-connectormanager-SimpleConnectorManagerAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Omiscid/fr-prima-omiscidgui-connectormanager-SimpleConnectorManagerAction.instance"/>
+            </file>
+        </folder>
+    </folder>
+</filesystem>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.0//EN" "http://www.netbeans.org/dtds/filesystem-1_0.dtd">
+<filesystem>
+    <folder name="Omiscid">
+        <folder name="Selectors">
+            <file name="fr-prima-omiscidgui-selector-generic-impl-OmiscidConnectorSelector.instance"/>
+            <file name="fr-prima-omiscidgui-selector-generic-impl-OmiscidVariableSelector.instance"/>
+        </folder>
+    </folder>
+</filesystem>

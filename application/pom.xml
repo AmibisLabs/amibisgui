@@ -1,0 +1,108 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>fr.prima.omiscidgui</groupId>
+        <artifactId>OMiSCIDGui</artifactId>
+        <version>3.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>omiscidgui</artifactId>
+    <packaging>nbm-application</packaging>
+    <version>3.0</version>
+    <name>OMiSCIDGui - Application</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.netbeans.cluster</groupId>
+            <artifactId>platform10</artifactId>
+            <version>${netbeans.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.prima.omiscidgui</groupId>
+            <artifactId>branding</artifactId>
+            <version>${branding.version}</version>
+            <type>nbm</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.prima.omiscidgui</groupId>
+            <artifactId>OMiSCIDBrowser</artifactId>
+            <version>${browser.version}</version>
+            <type>nbm</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.prima.omiscidgui</groupId>
+            <artifactId>OMiSCIDServiceTree</artifactId>
+            <version>${servicetree.version}</version>
+            <type>nbm</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.prima.omiscidgui</groupId>
+            <artifactId>OMiSCIDGenericSelectors</artifactId>
+            <version>${genericselectors.version}</version>
+            <type>nbm</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.prima.omiscidgui</groupId>
+            <artifactId>OMiSCIDVariableManager</artifactId>
+            <version>${variablemanager.version}</version>
+            <type>nbm</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.prima.omiscidgui</groupId>
+            <artifactId>OMiSCIDConnectorManager</artifactId>
+            <version>${connectormanager.version}</version>
+            <type>nbm</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.prima.netbeans</groupId>
+            <artifactId>BasicUpdateSites</artifactId>
+            <version>${updatesites.version}</version>
+            <type>nbm</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.prima.netbeans</groupId>
+            <artifactId>fr-prima-netbeans-omiscid</artifactId>
+            <version>${omiscid.version}</version>
+            <type>nbm-file</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.prima.netbeans</groupId>
+            <artifactId>SelectorBasedLookup</artifactId>
+            <version>${selectorbasedlookup.version}</version>
+            <type>nbm</type>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>nbm-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <inherited>false</inherited>
+                <configuration>
+                    <brandingToken>omiscidgui</brandingToken>
+                    <etcConfFile>src/main/custom/omiscidgui.conf</etcConfFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>cluster</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>cluster-app</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+
+
+
+
+
+
+
+

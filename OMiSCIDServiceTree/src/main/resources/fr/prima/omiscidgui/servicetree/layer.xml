@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.0//EN" "http://www.netbeans.org/dtds/filesystem-1_0.dtd">
+<filesystem>
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="fr-prima-omiscidgui-servicetree-OMiSCIDServiceTreeAction.instance"/>
+        </folder>
+        <folder name="Omiscid">
+            <file name="fr-prima-omiscidgui-servicetree-OMiSCIDSwitchBrowserDomainAction.instance"/>
+            <file name="fr-prima-omiscidgui-servicetree-OMiSCIDSwitchFilterAction.instance"/>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="Window">
+            <file name="OMiSCIDServiceTreeAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/fr-prima-omiscidgui-servicetree-OMiSCIDServiceTreeAction.instance"/>
+            </file>
+        </folder>
+        <folder name="Tools">
+            <file name="OMiSCIDSwitchBrowserDomainAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Omiscid/fr-prima-omiscidgui-servicetree-OMiSCIDSwitchBrowserDomainAction.instance"/>
+            </file>
+            <file name="OMiSCIDSwitchFilterAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Omiscid/fr-prima-omiscidgui-servicetree-OMiSCIDSwitchFilterAction.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="OMiSCIDServiceTreeTopComponent.settings" url="OMiSCIDServiceTreeTopComponentSettings.xml"/>
+        </folder>
+        <folder name="Modes">
+            <folder name="explorer">
+                <file name="OMiSCIDServiceTreeTopComponent.wstcref" url="OMiSCIDServiceTreeTopComponentWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="OptionsDialog">
+        <folder name="Actions">
+            <folder name="OMiSCID">
+                <file name="OMiSCIDServiceTreeAction.shadow">
+                    <attr name="originalFile" stringvalue="Actions/Window/fr-prima-omiscidgui-servicetree-OMiSCIDServiceTreeAction.instance"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>

@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: fr/prima/omiscidgui/browser/Bundle.properties
+OpenIDE-Module-Layer: fr/prima/omiscidgui/browser/layer.xml
+OpenIDE-Module-Install: fr/prima/omiscidgui/browser/Installer.class
+OpenIDE-Module-Public-Packages: fr.prima.omiscidgui.browser.*,
+ fr.prima.omiscidgui.browser.interf.*,
+ fr.prima.omiscidgui.browser.uiutil.*

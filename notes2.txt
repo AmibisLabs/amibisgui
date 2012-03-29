@@ -1,0 +1,45 @@
+
+
+create utilities for selector based selection management
+* create project
+* patch pom (plugin version, RELEASE67)
+* export public packages (in manifest but should/may be in pom.xml)
+* add to "application" project (dependency + add <type>nbm</type>
+
+http://openide.netbeans.org/lookup/
+and in particular http://bits.netbeans.org/dev/javadoc/org-openide-util/org/openide/util/lookup/doc-files/lookup-spi.html
+
+
+
+http://netbeans.dzone.com/articles/netbeans-lookups-explained
+
+ProxyLookup does not handle registering listener on result (source code does assert false;)
+.... maybe it is ok (it is used and it works ...)
+AbstractLookup seems to be ok ... (source based affirmation, to be proved by usage)
+......... ok, but only if we pass an Executor to the Content constructor (new InstanceContent(RequestProcessor.getDefault()))
+......... no! Executor is only used to replace sequential execution
+http://forums.netbeans.org/post-29528.html
+===>>>>> LookupResult must be prevented from garbage collection !!!! (a local final variable used in the its listener is insufficient)
+
+http://emilian-bold.blogspot.com/2006/11/netbeans-platform-lookupresult-garbage.html
+
+=> wrap this in a helper to avoid everyone facing this problem!
+
+implement your context aware action
+
+
+some more possible refs
+http://wiki.netbeans.org/DevFaqActionContextSensitive
+http://wiki.netbeans.org/DevFaqTrackingExplorerSelections
+http://wiki.netbeans.org/DeclarativeRegistrationUsingAnnotations
+http://wiki.netbeans.org/DeclarativeActionRegistration
+http://bits.netbeans.org/dev/javadoc/org-openide-util/org/openide/util/doc-files/api.html#folderlookup
+http://bits.netbeans.org/dev/javadoc/org-openide-loaders/org/openide/loaders/doc-files/api.html#delegate
+
+
+
+
+about localizing :
+http://bits.nbextras.org/dev/javadoc/org-openide-modules/org/openide/modules/doc-files/i18n-branding.html
+http://platform.netbeans.org/tutorials/nbm-options.html
+<attr name="position" intvalue="375"/>

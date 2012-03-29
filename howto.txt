@@ -1,0 +1,167 @@
+
+Generate a release (signed):
+* clean in Root
+* rm -rf output-repository/
+* ##build in Root
+* mvn -Dkeystorealias=omiscidstore -Dkeystorepassword=…***… -Dkeystore=keystore -Pdeployment install deploy 
+
+* maven repo (done by the deploy)
+#/bin/cp -r output-repository/* /home/oberon/public-maven
+#chgrp -R prima /home/oberon/public-maven/*
+#chmod -R g+rw /home/oberon/public-maven/*
+
+* update site
+find output-repository/ -type f -name \*.nbm -exec cp {} /home/oberon/public-nbms/ \; 
+** (script run on oberon will automatically update http://oberon/netbeans-public/)
+
+* zip release
+cd application && ./end-release.sh && cd -
+** result in application/omiscidgui-3.0.zip
+
+
+
+
+
+
+
+Update a plugin:
+* do your modifications
+* increment the version (e.g. 3.0-SNAPSHOT to 3.0.1-SNAPSHOT)
+* build your nbm
+* in the "application" project, change the versioning
+* rebuild it and the autoupdate site
+* export the autoupdate site
+
+
+
+* dnotify . -r -M -q 0 -e sh generate-update-site-from-nbm.sh
+* -r ?
+* ??? inotifywatch -e modify .
+
+
+Bootstrap to create/modify plugins:
+* unzip omiscidgui distribution
+* check it works
+* update it if necessary
+* run "mvn nbm:populate-repository"
+** type "omiscidgui" as prompted installation directory (i.e. relative path to the installation)
+* in netbeans, update your maven repository
+
+* in netbeans
+** open window->other->maven ...
+** add the omiscid repo
+
+* create a new maven project (under netbea ns)
+** netbeans module archetype
+* in pom.xml
+** remove explicit version use (including on the nbm-maven-plugin)
+** change all RELEASE65 to RELEASE67
+** errors may still remain
+** add following repository entry
+        <repository>
+            <id>primaven</id>
+            <name>repository hosting omiscidgui</name>
+            <url>http://www-prima.imag.fr/maven</url>
+        </repository>
+** potentially use a "mirror" in ~/.m2/settings.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+    <mirrors>
+        <mirror>
+          <id>oberon</id>
+          <url>http://oberon/release/maven</url>
+          <mirrorOf>primaven</mirrorOf><!-- http://www-prima.imag.fr/maven -->
+        </mirror>
+    </mirrors>
+</settings>
+* build to have errors cleared
+* might need restart netbeans if problems with adding dependencies
+* if you got "Project uses classes from transtive module ..."
+** add those manually
+* don't forget to handle license problems (either remove the entry in module.xml or create the file)
+
+* use "omiscidgui/bin/omiscidgui --reload MegaModule/target/MegaModule-1.0-SNAPSHOT.jar" to hot-reload your module during testing
+
+* can still do standard dev, it works (faster indeed)
+* it will create 2 worlds
+** non-maven can use nbms produced by maven
+** the inverse is impossible by now
+
+!!! should provide also omiscid and omiscid netbeans
+
+
+
+
+patch pom
+    <distributionManagement>
+        <repository>
+            <id>prima.public</id>
+            <name>Public PRIMA Repository</name>
+            <url>http://oberon.inrialpes.fr:8080/archiva/repository/internal</url>
+        </repository>
+    </distributionManagement>
+ + remove versions
+ + 65 en 67
+ +                     <publicPackages>
+                        <package>fr.prima.omiscidgui.roiviewer.interf</package>
+                    </publicPackages>
+
+touch license.txt
+
+
+
+Port a selector:
+* change layer.xml (remove 2 levels, use Omiscid/Selectors)
+* EVEN for creation : import OMiSCIDBrowser and SelectorBasedLookup modules
+* extends AbstractOmiscidSelector<ServiceElement>  (instead of implements OmiscidBrowserSelector) (or Service if you target services and not elements (connector/variables) or BrowserSelectionElement for both)
+**  create constructor with a super call with the proper redundant type (ServiceElement.class)
+** implement the getTasks(result, selection) method
+
+
+
+
+Port a contextual action:
+* change layer.xml (remove 2 levels, use Omiscid/Actions)
+* make it extends AbstractContextAwareAction<YourTaskType>
+* NON-Maven import the Utilites API module
+* create contextualization methods
+    // imports are from
+    //      javax.swing.Action
+    //      org.openide.util.Utilities
+
+    public MyMegaAction() {
+        // use global lookup if this actions is uncontextualized (e.g. put in the menu or in a key shortcut)
+        this(Utilities.actionsGlobalContext());
+    }
+    @Override
+    public Action createContextAwareInstance(Lookup actionContext) {
+        // creates a contextualized version of this action
+        return new MyMegaAction(actionContext);
+    }
+    public MyMegaAction(Lookup context) {
+        // creates a contextualized version of this action
+        super(YourTaskType.class, context);
+        putValue("noIconInMenu", Boolean.TRUE);
+        putValue(Action.NAME, NbBundle.getMessage(MyMegaAction.class, "CTL_MyMegaAction"));
+
+        ...
+    }
+
+    @Override
+    protected void updateAction(Lookup context) {
+        // e.g. setEnabled(context.lookupAll(MyMegaTask.class).size() > 0);
+    }
+    @Override
+    public void actionPerformed(Lookup context, ActionEvent ev) {
+        // e.g. for (YouTaskType task : context.lookupAll(YourTaskType.class))
+        /* // e.g.
+        for (final YouTaskType task : context.lookupAll(YouTaskType.class)) {
+            new Thread(new Runnable() {
+                public void run() {
+                    ...
+                }
+            }).start();
+        }
+        */
+    }
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.0//EN" "http://www.netbeans.org/dtds/filesystem-1_0.dtd">
+<filesystem>
+    <folder name="Toolbars">
+        <file name="Edit_hidden"/>
+            <file name="File_hidden"/>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Modes">
+            <folder name="editor">
+                <file name="JPanelWrapper.wstcref" url="uiutil/JComponentWrapperWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Actions">
+        <folder name="Omiscid">
+            <attr name="SystemFileSystem.localizingBundle" stringvalue="fr.prima.omiscidgui.browser.Bundle"/>
+            <attr name="displayName" bundlevalue="fr.prima.omiscidgui.browser.Bundle#CTL_AllActionsInToolsMenu"/>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="Tools">
+            <file name="AllOmiscid.shadow">
+                <attr name="position" intvalue="9000"/>
+                <attr name="originalFile" stringvalue="Actions/Omiscid"/>
+            </file>
+        </folder>
+    </folder>
+</filesystem>

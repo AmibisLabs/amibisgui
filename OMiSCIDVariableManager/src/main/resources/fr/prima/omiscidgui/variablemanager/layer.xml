@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.0//EN" "http://www.netbeans.org/dtds/filesystem-1_0.dtd">
+<filesystem>
+    <folder name="Actions">
+        <folder name="Omiscid">
+            <file name="fr-prima-omiscidgui-variablemanager-VariableMonitorAction.instance"/>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Modes">
+            <folder name="editor">
+                <file name="VariableMonitorTopComponent.wstcref" url="VariableMonitorTopComponentWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Omiscid">
+        <folder name="Actions">
+            <file name="fr-prima-omiscidgui-variablemanager-VariableMonitorAction.instance"/>
+        </folder>
+    </folder>
+</filesystem>

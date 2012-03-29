@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>fr.prima.omiscidgui</groupId>
+    <artifactId>OMiSCIDGui</artifactId>
+    <packaging>pom</packaging>
+    <version>3.0</version>
+    <name>OMiSCIDGui - Root</name>
+    <repositories>
+        <!-- this is a remote repository hosting the netbeans api artifacts.
+         the versions of the artifacts are netbeans IDE release based, eg. RELEASE65
+         You might want to use your own repository. To create one, use the nbm:populate-repository goal.
+          -->
+        <repository>
+            <id>netbeans</id>
+            <name>repository hosting netbeans.org api artifacts</name>
+            <url>http://bits.netbeans.org/maven2</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>nbm-maven-plugin</artifactId>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <descriptor>src/main/nbm/module.xml</descriptor>
+                        <brandingToken>${brandingToken}</brandingToken>
+                        <cluster>omiscidgui</cluster>
+                        <keystore>${keystore}</keystore>
+                        <keystorealias>${keystorealias}</keystorealias>
+                        <keystorepassword>${keystorepassword}</keystorepassword>
+                        <!--distBase>oberon::default::http://oberon/release/maven</distBase-->
+                        <!--distBase>oberon::default::file://../../jOMiSCID-Maven-Netbeans/target/</distBase-->
+                        <!--fileName>updates.xml</fileName-->
+                    </configuration>
+                </plugin>
+                
+                <!-- netbeans modules in 5.5+ are 1.5 compatible -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.5</source>
+                        <target>1.5</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    <modules>
+        <module>branding</module>
+        <module>application</module>
+        <module>BasicUpdateSites</module>
+        <module>OMiSCIDBrowser</module>
+        <module>OMiSCIDServiceTree</module>
+        <module>OMiSCIDGenericSelectors</module>
+        <module>OMiSCIDVariableManager</module>
+        <module>OMiSCIDConnectorManager</module>
+        <module>SelectorBasedLookup</module>
+  </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>prima.public</id>
+            <name>Public PRIMA Repository</name>
+            <url>http://oberon.inrialpes.fr:8080/archiva/repository/internal</url>
+        </repository>
+        <!--repository>
+            <id>repo</id>
+            <name>Local Repository (to be uploaded)</name>
+            <url>file://output-repository</url>
+        </repository-->
+    </distributionManagement>
+
+    <properties>
+        <netbeans.version>RELEASE67</netbeans.version>
+        <omiscid.version>1.6.0</omiscid.version>
+        <branding.version>3.0.3</branding.version>
+        <browser.version>3.0.2</browser.version>
+        <servicetree.version>3.0.5</servicetree.version>
+        <genericselectors.version>3.0</genericselectors.version>
+        <variablemanager.version>3.0.1</variablemanager.version>
+        <connectormanager.version>3.0</connectormanager.version>
+        <updatesites.version>3.0</updatesites.version>
+        <selectorbasedlookup.version>1.0</selectorbasedlookup.version>
+        <brandingToken>omiscidgui</brandingToken>
+    </properties>
+</project>

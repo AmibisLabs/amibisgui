@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-SignedApp</actionName>
+            <displayName>SignedApp</displayName>
+            <goals>
+                <goal>install</goal>
+            </goals>
+            <properties>
+                <keystore>keystore</keystore>
+                <keystorealias>omiscidstore</keystorealias>
+                <keystorepassword>omiscidlm1</keystorepassword>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>deployment</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>build-with-dependencies</actionName>
+            <basedir>.</basedir>
+            <goals>
+                <goal>reactor:make</goal>
+            </goals>
+            <properties>
+                <make.artifacts>${groupId}:${artifactId}</make.artifacts>
+            </properties>
+        </action>
+    </actions>

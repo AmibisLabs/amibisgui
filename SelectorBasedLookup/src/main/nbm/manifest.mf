@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: fr/prima/netbeans/selector/Bundle.properties
+OpenIDE-Module-Layer: fr/prima/netbeans/selector/layer.xml
+OpenIDE-Module-Public-Packages: fr.prima.netbeans.selector.*

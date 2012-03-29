@@ -1,0 +1,215 @@
+
+create a new netbeans app project under netbeans
+* name: OMiSCIDGui
+* group: fr.prima.omiscidgui
+* package: fr.prima.omiscidgui
+*=> it creates 1 project and 3 subprojects (application, branding, module1)
+
+delete the “module1” project (“Sample Netbeans ...”), and check the “also delete sources” option.
+
+in poms, rename projects for readability:
+* root (pom) project to “OMiSCIDGui - Root” 
+* application (nbm-application) project to “OMiSCIDGui - Application” 
+* branding (nbm) project to “OMiSCIDGui - Branding” 
+
+
+in root's pom:
+* change cluster from “foobar” to “omiscid”
+* change RELEASE65 to RELEASE67
+* change branding token from “foo” to “omiscidgui”
+
+in application's pom:
+* change “platform9” to “platform10”
+* remove dependency to “module1”
+
+application's “Build with dependencies” should be operational now
+application's “Run” should start an empty gui
+
+@r7212
+
+
+
+create a new netbeans module (1.1) project under netbeans
+* location: the folder of the root project so as the project folder is a sibling folder of “application” and “branding”
+* name: OMiSCIDBrowser
+* group: fr.prima.omiscidgui
+* package: fr.prima.omiscidgui.browser
+
+in its pom:
+* rename it to “OMiSCIDGui - Browser”
+* change “RELEASE65” to “RELEASE67”
+
+in applications's pom:
+* copy nbm-dependency to “branding”
+* change “branding” to “OMiSCIDBrowser” in this copy
+
+code or import the sources from the old project to the OMiSCIDBrowser project
+(if you import from non maven, beware of layer.xml and bundle.properties locations)
+(if you import from non maven, beware of non-java files in the source directory (not bundled)   )
+always add RELEASE67 dependencies
+
+don't forget to include transitive dependencies (building the browser project tells you which are missing)
+warning: even when RELEASE67 do not show up in the proposed dependencies, use RELEASE67
+
+don't forget the public packages in your module manifest:
+* in important files -> manifest
+* e.g. 
+OpenIDE-Module-Public-Packages: fr.prima.omiscidgui.browser.*,
+ fr.prima.omiscidgui.browser.interf.*,
+ fr.prima.omiscidgui.browser.uiutil.*
+
+
+
+
+
+create a new netbeans module project under netbeans
+* name: OMiSCIDServiceTree
+* group: fr.prima.omiscidgui
+* package: fr.prima.omiscidgui.servicetree
+
+in its pom:
+* rename it to “OMiSCIDGui - ServiceTree”
+* change “RELEASE65” to “RELEASE67”
+
+in applications's pom:
+* copy nbm-dependency to “branding”
+* change “branding” to “OMiSCIDServiceTree” in this copy
+
+
+
+when you depend on the omiscid library, express your dependency to the omiscid netbeans module (fr-prima-netbeans-omiscid).
+(you can get a linkageerror at runtime if you don't)
+
+mvn install:install-file -DgroupId=fr.prima.netbeans -DartifactId=fr-prima-netbeans-omiscid -Dversion=1.6-SNAPSHOT -Dpackaging=nbm -Dfile=/home/prometheus/emonet/projects/jOMiSCID-Maven-Netbeans/target/fr-prima-netbeans-omiscid-1.6-SNAPSHOT.nbm
+
+
+@r7220
+
+
+we will hide the undo/redo buttons (by default) present in the tool bar
+* open the layer.xml file from the “branding” project
+* DONT know how to do it ...
+* if you want to totally remove the toolbar :
+** see http://platform.netbeans.org/tutorials/nbm-feedreader.html
+** add the toolbar removal code
+<filesystem>
+    <folder name="Toolbars">
+        <folder name="UndoRedo_hidden"/>
+    </folder>
+</filesystem>
+
+
+@r7222
+
+
+we will add an update site (on the gforge), 
+create a new netbeans module project under netbeans
+* name: InriaGforgeUpdateSite
+* group: fr.prima.netbeans
+* package: fr.prima.netbeans.update.gforge
+
+in its pom:
+* rename it if you want
+* change “RELEASE65” to “RELEASE67”
+
+in applications's pom:
+* copy nbm-dependency to “branding”
+* change groupId to “fr.prima.netbeans”
+* change “branding” to “InriaGforgeUpdateSite” in this copy
+
+in InriaGforgeUpdateSite project make a new->other->module-dev->udpate-site
+
+edit bundle.properties to set proper url, category, etc.
+
+
+@r7223
+
+
+
+the same for localprima (oberon)
+
+
+
+@r7224
+
+
+
+do the branding correctly
+
+
+
+@r7225
+
+
+
+create a new netbeans module project under netbeans
+* name: OMiSCIDGenericSelectors
+* group: fr.prima.omiscidgui
+* package: fr.prima.omiscidgui.selector.generic
+
+in its pom:
+* rename it to “OMiSCIDGui - GenericSelectors”
+* change “RELEASE65” to “RELEASE67”
+
+in applications's pom:
+* copy nbm-dependency to “branding”
+* change “branding” to “OMiSCIDGenericSelectors” in this copy
+
+create your tasks and selectors properly ...
+* ...
+* fill your layer file
+* export your task package : OpenIDE-Module-Public-Packages: fr.prima.omiscidgui.selector.generic.*
+
+
+@r7226
+
+for the variable manager
+* create new project, change to 67 and add to the “application”
+* fill layer and create the manager
+
+idem for the connector manager
+
+
+@r7227
+
+various fixes
++ removed licenses
+
+
+
+DONT USE -SNAPSHOT, use real version numbers
+
+
+keytool -genkey -alias omiscidstore -keystore keystore
+Tapez le mot de passe du Keystore :  
+Ressaisissez le nouveau mot de passe : 
+ne correspondent pas. Réessayez.
+Tapez le mot de passe du Keystore :  
+Ressaisissez le nouveau mot de passe : 
+Quels sont vos prénom et nom ?
+  [Unknown] :  Remi Emonet
+Quel est le nom de votre unité organisationnelle ?
+  [Unknown] :  
+Quelle est le nom de votre organisation ?
+  [Unknown] :  
+Quel est le nom de votre ville de résidence ?
+  [Unknown] :  
+Quel est le nom de votre état ou province ?
+  [Unknown] :  
+Quel est le code de pays à deux lettres pour cette unité ?
+  [Unknown] :  
+Est-ce CN=Remi Emonet, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown ?
+  [non] :  oui
+
+Spécifiez le mot de passe de la clé pour <omiscidstore>
+	(appuyez sur Entrée s'il s'agit du mot de passe du Keystore) :  
+omiscidlm1
+
+In Root:
+* in nbm maven plugin configuration section add
+                                    <keystore>${keystore}</keystore>
+                                    <keystorealias>${keystorealias}</keystorealias>
+                                    <keystorepassword>${keystorepassword}</keystorepassword>
+* create a nbaction.xml with the proper properties
+
+http://wiki.netbeans.org/DevFaqSignNbm

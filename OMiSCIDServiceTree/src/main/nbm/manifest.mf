@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: fr/prima/omiscidgui/servicetree/Bundle.properties
+OpenIDE-Module-Layer: fr/prima/omiscidgui/servicetree/layer.xml
+OpenIDE-Module-Public-Packages: fr.prima.omiscidgui.servicetree.interf.*
